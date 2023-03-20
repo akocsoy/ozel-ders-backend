@@ -3,6 +3,7 @@ package ozelders.io.business.rules;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import ozelders.io.core.utils.encoders.PasswordEncoderService;
 import ozelders.io.core.utils.exceptions.BusinessException;
 import ozelders.io.dataAccess.abstracts.UserRepository;
 
@@ -10,6 +11,7 @@ import ozelders.io.dataAccess.abstracts.UserRepository;
 @AllArgsConstructor
 public class UserBusinessRules {
 	private UserRepository userRepository;
+	private PasswordEncoderService passwordEncoderService;
 	
 	public void checkIfUserNameExists(String name) {
 		if(this.userRepository.existsByName(name)) {
@@ -18,7 +20,7 @@ public class UserBusinessRules {
 	}
 	public void checkLogin(String name, String password) {
 		if(this.userRepository.existsByName(name)) {
-			if(!(this.userRepository.findByName(name).getPassword().equals(password))) {
+			if(!(this.passwordEncoderService.matches(password, userRepository.findByName(name).getPassword()))) {
 				throw new BusinessException("Wrong password!");
 			}
 		}else {

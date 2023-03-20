@@ -5,6 +5,7 @@ import java.util.List;
 import ozelders.io.business.requests.UserAddRequest;
 import ozelders.io.business.requests.UserLoginRequest;
 import ozelders.io.business.requests.UserLogoutRequest;
+import ozelders.io.business.requests.UserSellerRequest;
 import ozelders.io.business.responses.GetAllUsersResponse;
 
 public interface UserService {
@@ -13,4 +14,5 @@ public interface UserService {
 	void login(UserLoginRequest userLoginRequest);
 	void delete(int id);
 	void logout(UserLogoutRequest userLogoutRequest);
+	void beSeller(UserSellerRequest userSellerRequest);
 }

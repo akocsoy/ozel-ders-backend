@@ -18,6 +18,7 @@ import ozelders.io.business.abstracts.UserService;
 import ozelders.io.business.requests.UserAddRequest;
 import ozelders.io.business.requests.UserLoginRequest;
 import ozelders.io.business.requests.UserLogoutRequest;
+import ozelders.io.business.requests.UserSellerRequest;
 import ozelders.io.business.responses.GetAllUsersResponse;
 
 @RestController
@@ -48,5 +49,9 @@ public class UserController {
 	@PutMapping("/logout")
 	public void login(@RequestBody() UserLogoutRequest userLogoutRequest) {
 		this.userService.logout(userLogoutRequest);
+	}
+	@PutMapping("/beseller")
+	public void beSeller(@RequestBody() UserSellerRequest userSellerRequest) {
+		this.userService.beSeller(userSellerRequest);
 	}
 }

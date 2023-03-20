@@ -10,9 +10,12 @@ import ozelders.io.business.abstracts.UserService;
 import ozelders.io.business.requests.UserAddRequest;
 import ozelders.io.business.requests.UserLoginRequest;
 import ozelders.io.business.requests.UserLogoutRequest;
+import ozelders.io.business.requests.UserSellerRequest;
 import ozelders.io.business.responses.GetAllUsersResponse;
 import ozelders.io.business.rules.UserBusinessRules;
+import ozelders.io.core.utils.encoders.PasswordEncoderService;
 import ozelders.io.core.utils.mappers.ModelMapperService;
+import ozelders.io.dataAccess.abstracts.AdvertRepository;
 import ozelders.io.dataAccess.abstracts.UserRepository;
 import ozelders.io.entities.concretes.User;
 
@@ -22,10 +25,13 @@ public class UserManager implements UserService{
 	private ModelMapperService modelMapperService;
 	private UserRepository userRepository;
 	private UserBusinessRules userBusinessRules;
+	private PasswordEncoderService passwordEncoderService;
+	private AdvertRepository advertRepository;
 	@Override
 	public void add(UserAddRequest userAddRequest) {
 		
 		this.userBusinessRules.checkIfUserNameExists(userAddRequest.getName());
+		userAddRequest.setPassword(this.passwordEncoderService.encode(userAddRequest.getPassword())); 
 		
 		User newUser = this.modelMapperService.forRequest().map(userAddRequest, User.class);
 		this.userRepository.save(newUser);
@@ -47,6 +53,7 @@ public class UserManager implements UserService{
 	}
 	@Override
 	public void delete(int id) {
+		this.advertRepository.deleteAllByUserId(id);
 		this.userRepository.deleteById(id);
 	}
 	@Override
@@ -54,6 +61,12 @@ public class UserManager implements UserService{
 		User userToLogout = this.userRepository.findById(userLogoutRequest.getId()).orElseThrow();
 		userToLogout.setLogStatus(0);
 		userRepository.save(userToLogout);
+	}
+	@Override
+	public void beSeller(UserSellerRequest userSellerRequest) {
+		User user = this.userRepository.findById(userSellerRequest.getId()).orElseThrow();
+		user.setIsSeller(1);
+		this.userRepository.save(user);
 	}
 	
 	

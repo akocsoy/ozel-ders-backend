@@ -34,6 +34,9 @@ public class User {
 	@Column(name = "logStatus")
 	private int logStatus;
 	
+	@Column(name = "isSeller")
+	private int isSeller;
+	
 	@OneToMany(mappedBy = "user")
 	private List<Advert> adverts;
 }
