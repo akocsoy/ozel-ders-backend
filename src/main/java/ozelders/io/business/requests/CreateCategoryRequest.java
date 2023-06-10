@@ -2,10 +2,13 @@ package ozelders.io.business.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class UserLoginRequest {
-	private String email;
-	private String password;
+@NoArgsConstructor
+public class CreateCategoryRequest {
+	
+	private String name;
+	
 }

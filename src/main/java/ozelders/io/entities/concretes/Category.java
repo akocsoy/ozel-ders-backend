@@ -15,12 +15,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "users")
+@Table(name = "category")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+public class Category {
 	
 	@Column(name = "id")
 	@Id
@@ -30,33 +30,7 @@ public class User {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name = "password")
-	private String password;
-	
-	@Column(name = "logStatus")
-	private int logStatus = 0;
-	
-	@Column(name = "isSeller")
-	private int isSeller;
-	
-	@Column(name = "studyInfo")
-	private String studyInfo;
-
-	@Column(name = "hobbies")
-	private List<String> hobbies;
-	
-	@Column(name = "abilities")
-	private List<String> abilities;
-	
-	private List<String> certificates;
-	
-	@Column(name="star")
-	private List<Double> star;
-	
 	@JsonBackReference
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "category")
 	private List<Advert> adverts;
 }

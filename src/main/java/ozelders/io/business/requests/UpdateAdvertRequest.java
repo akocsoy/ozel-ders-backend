@@ -9,10 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateAdvertRequest {
+public class UpdateAdvertRequest {
+	private int id;
 	private int userId;
-	private String description;
 	private List<Integer> applicants;
+	private String description;
 	private String detailedDescription;
 	private int duration;
 	private double price;

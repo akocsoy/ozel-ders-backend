@@ -13,14 +13,14 @@ public class UserBusinessRules {
 	private UserRepository userRepository;
 	private PasswordEncoderService passwordEncoderService;
 	
-	public void checkIfUserNameExists(String name) {
-		if(this.userRepository.existsByName(name)) {
+	public void checkIfUserEmailExists(String email) {
+		if(this.userRepository.existsByEmail(email)) {
 			throw new BusinessException("User name already exists");
 		}
 	}
-	public void checkLogin(String name, String password) {
-		if(this.userRepository.existsByName(name)) {
-			if(!(this.passwordEncoderService.matches(password, userRepository.findByName(name).getPassword()))) {
+	public void checkLogin(String email, String password) {
+		if(this.userRepository.existsByEmail(email)) {
+			if(!(this.passwordEncoderService.matches(password, userRepository.findByEmail(email).getPassword()))) {
 				throw new BusinessException("Wrong password!");
 			}
 		}else {

@@ -1,5 +1,7 @@
 package ozelders.io.business.responses;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +11,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetAllAdvertsResponse {
 	private int id;
+	private String categoryName;
+	private int userId;
 	private String userName;
+	private String userEmail;
 	private String description;
-	private String publishDate;
+	private String detailedDescription;
+	private String startDate;
+	private double weeklyHours;
+	private int duration;
 	private double price;
+	private String publishDate;
+	private int categoryId;
+	private int quota;
+	private String platform;
+	private String platformCode;
+	private List<Integer> userStar;
+	private List<Integer> applicants;
 }

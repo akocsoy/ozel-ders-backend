@@ -8,5 +8,6 @@ import lombok.Data;
 public class UserAddRequest {
 	private int logStatus;
 	private String name;
+	private String email;
 	private String password;
 }

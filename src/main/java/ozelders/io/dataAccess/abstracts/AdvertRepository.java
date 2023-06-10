@@ -10,4 +10,5 @@ public interface AdvertRepository extends JpaRepository<Advert, Integer> {
 
 		List<Advert> findByUserId(int userId);
 		void deleteAllByUserId(int userId);
+		List<Advert> findAllByCategoryId(int categoryId);
 }

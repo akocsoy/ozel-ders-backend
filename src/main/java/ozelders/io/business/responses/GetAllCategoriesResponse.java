@@ -1,6 +1,4 @@
-package ozelders.io.business.requests;
-
-
+package ozelders.io.business.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserSellerRequest {
-	private int id;
+public class GetAllCategoriesResponse {
+	private String name;
 }
